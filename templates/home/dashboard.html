@@ -1,0 +1,207 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+
+<section class="hero-section">
+
+    <div class="hero-overlay">
+
+        <div class="container">
+
+            <div class="hero-content text-center">
+
+                <h1 class="hero-title">
+
+                    Find Your Perfect Stay Anywhere
+
+                </h1>
+
+                <p class="hero-subtitle">
+
+                    Affordable hostels, PGs, flats and rooms
+                    for students and professionals.
+
+                </p>
+
+                <!-- SEARCH BAR -->
+
+                <form action="/search/"
+                      method="GET"
+                      class="hero-search">
+
+                    <input type="text"
+                           name="q"
+                           class="form-control search-input"
+                           placeholder="Search city, hostel, PG, flat...">
+
+                    <button class="btn search-btn">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        Search
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- IMAGE SLIDER -->
+
+<div class="container mt-5">
+
+    <div id="carouselExample"
+         class="carousel slide"
+         data-bs-ride="carousel">
+
+        <div class="carousel-inner rounded-4 shadow">
+
+            <div class="carousel-item active">
+
+                <img src="{% static 'images/slider1.jpg' %}"
+                     class="d-block w-100 slider-image">
+
+                <div class="carousel-caption">
+
+                    <h2>Premium Student Hostels</h2>
+
+                    <p>Affordable and secure stay options.</p>
+
+                </div>
+
+            </div>
+
+            <div class="carousel-item">
+
+                <img src="{% static 'images/slider2.jpg' %}"
+                     class="d-block w-100 slider-image">
+
+                <div class="carousel-caption">
+
+                    <h2>Modern PG Rooms</h2>
+
+                    <p>Comfortable living for professionals.</p>
+
+                </div>
+
+            </div>
+
+            <div class="carousel-item">
+
+                <img src="{% static 'images/slider3.jpg' %}"
+                     class="d-block w-100 slider-image">
+
+                <div class="carousel-caption">
+
+                    <h2>Affordable Flats & Houses</h2>
+
+                    <p>Find your perfect rental easily.</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- CONTROLS -->
+
+        <button class="carousel-control-prev"
+                type="button"
+                data-bs-target="#carouselExample"
+                data-bs-slide="prev">
+
+            <span class="carousel-control-prev-icon"></span>
+
+        </button>
+
+        <button class="carousel-control-next"
+                type="button"
+                data-bs-target="#carouselExample"
+                data-bs-slide="next">
+
+            <span class="carousel-control-next-icon"></span>
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- FEATURED PROPERTIES -->
+
+<div class="container mt-5">
+
+    <h2 class="mb-4 fw-bold section-title">
+
+        Featured Properties
+
+    </h2>
+
+    <div class="row">
+
+        {% for property in properties %}
+
+        <div class="col-md-4 mb-4">
+
+            <div class="card property-card shadow border-0">
+
+                <img src="{{ property.image.url }}"
+                     class="card-img-top property-image">
+
+                <div class="card-body">
+
+                    <span class="badge bg-primary mb-2">
+
+                        {{ property.category }}
+
+                    </span>
+
+                    <h5 class="fw-bold">
+
+                        {{ property.title }}
+
+                    </h5>
+
+                    <p class="text-muted">
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        {{ property.location }}
+
+                    </p>
+
+                    <h6 class="text-primary fw-bold">
+
+                        ₹ {{ property.price }}/month
+
+                    </h6>
+
+                    <a href="/properties/detail/{{ property.id }}/"
+                       class="btn register-btn w-100 mt-3">
+
+                        View Details
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

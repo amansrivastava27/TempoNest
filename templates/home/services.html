@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <h1 class="fw-bold text-capitalize mb-4">
+        {{ category }}
+    </h1>
+
+    <div class="row">
+
+        {% for property in properties %}
+
+        <div class="col-md-4 mb-4">
+
+            <div class="card property-card shadow">
+
+                <img src="{{ property.image.url }}"
+                     class="card-img-top property-image">
+
+                <div class="card-body">
+
+                    <h5>{{ property.title }}</h5>
+
+                    <p>
+                        {{ property.location }}
+                    </p>
+
+                    <h6>
+                        ₹ {{ property.price }}/month
+                    </h6>
+
+                    <a href="#"
+                       class="btn btn-primary w-100">
+
+                       View Details
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <h4>No properties available.</h4>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <h2 class="mb-4">
+
+        Search Results for "{{ query }}"
+
+    </h2>
+
+    <div class="row">
+
+        {% for property in properties %}
+
+        <div class="col-md-4 mb-4">
+
+            <div class="card property-card shadow">
+
+                <img src="{{ property.image.url }}"
+                     class="property-image">
+
+                <div class="card-body">
+
+                    <h5>{{ property.title }}</h5>
+
+                    <p>{{ property.location }}</p>
+
+                    <h6>₹ {{ property.price }}</h6>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

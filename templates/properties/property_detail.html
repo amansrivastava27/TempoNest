@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-6">
+        <img src="{{ property.image.url }}" class="img-fluid rounded" />
+      </div>
+
+      <div class="col-md-6">
+        <h1>{{ property.title }}</h1>
+
+        <h3 class="text-primary">₹ {{ property.price }}/month</h3>
+
+        <p class="mt-3">{{ property.description }}</p>
+
+        <h5>
+          Location:
+          {{ property.location }}
+        </h5>
+
+        <hr />
+
+        <h5>Facilities</h5>
+
+        <ul>
+          {% if property.wifi %}
+            <li>WiFi</li>
+          {% endif %}
+
+          {% if property.parking %}
+            <li>Parking</li>
+          {% endif %}
+
+          {% if property.food %}
+            <li>Food Available</li>
+          {% endif %}
+
+          {% if property.ac %}
+            <li>AC Room</li>
+          {% endif %}
+        </ul>
+
+        <a href="#" class="btn register-btn mt-3 w-100">
+          <i class="fa-solid fa-calendar-check"></i>
+
+          Book Property
+        </a>
+        
+      </div>
+    </div>
+  </div>
+{% endblock %}
