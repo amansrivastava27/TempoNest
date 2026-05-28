@@ -3,17 +3,48 @@ from properties.models import Property
 from django.db.models import Q
 
 
+from django.shortcuts import render
+
+from properties.models import Property
+
+
 def dashboard(request):
 
-    featured_properties = Property.objects.all()[:6]
+    properties = Property.objects.filter(
+        available=True
+    )
+
+    search = request.GET.get('search')
+
+    category = request.GET.get('category')
+
+    # SEARCH BY CITY OR LOCATION
+
+    if search:
+
+        properties = properties.filter(
+            city__icontains=search
+        )
+
+    # FILTER BY CATEGORY
+
+    if category:
+
+        properties = properties.filter(
+            category=category
+        )
 
     context = {
-        'properties': featured_properties
+
+        'properties': properties
+
     }
 
-    return render(request,
-                  'home/dashboard.html',
-                  context)
+    return render(
+        request,
+        'home/dashboard.html',
+        context
+    )
 
 
 def about(request):

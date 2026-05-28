@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5 mb-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-6">
+
+            <div class="card shadow border-0 p-5 text-center">
+
+                <h2 class="fw-bold mb-3">
+
+                    Complete Your Booking
+
+                </h2>
+
+                <p class="text-muted">
+
+                    Property:
+                    <strong>
+                        {{ booking.property.title }}
+                    </strong>
+
+                </p>
+
+                <h3 class="text-primary fw-bold mb-4">
+
+                    ₹ 500 Booking Fee
+
+                </h3>
+
+                <button id="rzp-button"
+                        class="btn register-btn w-100">
+
+                    Pay Now
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- RAZORPAY -->
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+
+var options = {
+
+    "key": "{{ razorpay_key }}",
+
+    "amount": "{{ amount }}",
+
+    "currency": "INR",
+
+    "name": "TempoNest",
+
+    "description": "Property Booking Payment",
+
+    "order_id": "{{ payment.id }}",
+
+    "handler": function (response){
+
+        fetch("/properties/payment-success/", {
+
+            method: "POST",
+
+            headers: {
+
+                "Content-Type": "application/x-www-form-urlencoded",
+
+                "X-CSRFToken": "{{ csrf_token }}"
+
+            },
+
+            body: new URLSearchParams({
+
+                razorpay_payment_id: response.razorpay_payment_id,
+
+                razorpay_order_id: response.razorpay_order_id,
+
+                razorpay_signature: response.razorpay_signature,
+
+                booking_id: "{{ booking.id }}"
+
+            })
+
+        })
+
+        .then(response => response.text())
+
+        .then(data => {
+
+            document.open();
+
+            document.write(data);
+
+            document.close();
+
+        });
+
+    },
+
+    "theme": {
+
+        "color": "#38bdf8"
+
+    }
+
+};
+
+var rzp1 = new Razorpay(options);
+
+document.getElementById('rzp-button').onclick = function(e){
+
+    rzp1.open();
+
+    e.preventDefault();
+
+}
+
+</script>
+
+{% endblock %}

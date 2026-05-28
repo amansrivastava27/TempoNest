@@ -1,52 +1,90 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <div class="container mt-5">
+  <div class="container mt-5 mb-5">
     <div class="row">
-      <div class="col-md-6">
-        <img src="{{ property.image.url }}" class="img-fluid rounded" />
+      <!-- PROPERTY IMAGE -->
+
+      <div class="col-md-7">
+        <img src="{{ property.image.url }}" class="img-fluid detail-image shadow" />
       </div>
 
-      <div class="col-md-6">
-        <h1>{{ property.title }}</h1>
+      <!-- PROPERTY INFO -->
 
-        <h3 class="text-primary">₹ {{ property.price }}/month</h3>
+      <div class="col-md-5">
+        <div class="detail-card shadow">
+          <span class="badge bg-primary mb-3">{{ property.category }}</span>
 
-        <p class="mt-3">{{ property.description }}</p>
+          <h2 class="fw-bold">{{ property.title }}</h2>
 
-        <h5>
-          Location:
-          {{ property.location }}
-        </h5>
+          <p class="text-muted">
+            <i class="fa-solid fa-location-dot"></i>
 
-        <hr />
+            {{ property.location }}
+          </p>
 
-        <h5>Facilities</h5>
+          <h3 class="text-primary fw-bold mt-3">₹ {{ property.price }}/month</h3>
 
-        <ul>
-          {% if property.wifi %}
-            <li>WiFi</li>
-          {% endif %}
+          <hr />
 
-          {% if property.parking %}
-            <li>Parking</li>
-          {% endif %}
+          <h5>Description</h5>
 
-          {% if property.food %}
-            <li>Food Available</li>
-          {% endif %}
+          <p>{{ property.description }}</p>
 
-          {% if property.ac %}
-            <li>AC Room</li>
-          {% endif %}
-        </ul>
+          <!-- AMENITIES -->
 
-        <a href="#" class="btn register-btn mt-3 w-100">
-          <i class="fa-solid fa-calendar-check"></i>
+          <div class="mt-4">
+            <h5>Amenities</h5>
 
-          Book Property
-        </a>
-        
+            <div class="amenities">
+              {% if property.wifi %}
+                <span>
+                  <i class="fa-solid fa-wifi"></i>
+
+                  WiFi
+                </span>
+              {% endif %}
+
+              {% if property.ac %}
+                <span>
+                  <i class="fa-solid fa-snowflake"></i>
+
+                  AC
+                </span>
+              {% endif %}
+
+              {% if property.parking %}
+                <span>
+                  <i class="fa-solid fa-car"></i>
+
+                  Parking
+                </span>
+              {% endif %}
+
+              {% if property.food %}
+                <span>
+                  <i class="fa-solid fa-utensils"></i>
+
+                  Food
+                </span>
+              {% endif %}
+            </div>
+          </div>
+
+          <!-- OWNER -->
+
+          <div class="mt-4">
+            <h5>Owner</h5>
+
+            <p>{{ property.owner.username }}</p>
+          </div>
+
+          <a href="/properties/book/{{ property.id }}/" class="btn register-btn w-100 mt-4">
+            <i class="fa-solid fa-calendar-check"></i>
+
+            Book Now
+          </a>
+        </div>
       </div>
     </div>
   </div>

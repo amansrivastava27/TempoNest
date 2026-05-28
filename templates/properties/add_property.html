@@ -2,28 +2,172 @@
 
 {% block content %}
 
-<div class="container mt-5">
+<div class="container py-5">
 
     <div class="row justify-content-center">
 
-        <div class="col-md-8">
+        <div class="col-lg-10">
 
-            <div class="card shadow p-4">
+            <div class="add-property-card shadow-lg">
 
-                <h2 class="mb-4">
-                    Add Property
-                </h2>
+                <!-- HEADING -->
 
-                <form method="POST"
-                      enctype="multipart/form-data">
+                <div class="text-center mb-5">
+
+                    <h1 class="fw-bold">
+                        Add New Property
+                    </h1>
+
+                    <p class="text-muted">
+                        List your hostel, PG, flat or room professionally
+                    </p>
+
+                </div>
+
+                <!-- FORM -->
+
+                <form method="POST" enctype="multipart/form-data">
 
                     {% csrf_token %}
 
-                    {{ form.as_p }}
+                    <!-- ROW 1 -->
 
-                    <button class="btn register-btn">
+                    <div class="row">
 
-                        Upload Property
+                        <div class="col-md-6 mb-4">
+
+                            <label class="form-label">
+                                Property Title
+                            </label>
+
+                            {{ form.title }}
+
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+
+                            <label class="form-label">
+                                Category
+                            </label>
+
+                            {{ form.category }}
+
+                        </div>
+
+                    </div>
+
+                    <!-- ROW 2 -->
+
+                    <div class="row">
+
+                        <div class="col-md-6 mb-4">
+
+                            <label class="form-label">
+                                Monthly Price
+                            </label>
+
+                            {{ form.price }}
+
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+
+                            <label class="form-label">
+                                City
+                            </label>
+
+                            {{ form.city }}
+
+                        </div>
+
+                    </div>
+
+                    <!-- LOCATION -->
+
+                    <div class="mb-4">
+
+                        <label class="form-label">
+                            Full Location
+                        </label>
+
+                        {{ form.location }}
+
+                    </div>
+
+                    <!-- DESCRIPTION -->
+
+                    <div class="mb-4">
+
+                        <label class="form-label">
+                            Description
+                        </label>
+
+                        {{ form.description }}
+
+                    </div>
+
+                    <!-- IMAGE -->
+
+                    <div class="mb-4">
+
+                        <label class="form-label">
+                            Main Property Image
+                        </label>
+
+                        {{ form.image }}
+
+                    </div>
+
+                    <!-- AMENITIES -->
+
+                    <div class="mb-4">
+
+                        <h4 class="fw-bold mb-3">
+                            Amenities
+                        </h4>
+
+                        <div class="amenities-grid">
+
+                            <div class="form-check">
+                                {{ form.wifi }}
+                                <label class="form-check-label">
+                                    WiFi
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                {{ form.ac }}
+                                <label class="form-check-label">
+                                    AC
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                {{ form.parking }}
+                                <label class="form-check-label">
+                                    Parking
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                {{ form.food }}
+                                <label class="form-check-label">
+                                    Food
+                                </label>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- BUTTON -->
+
+                    <button type="submit"
+                            class="btn register-btn w-100 add-btn">
+
+                        <i class="fa-solid fa-plus"></i>
+
+                        Add Property
 
                     </button>
 

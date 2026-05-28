@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mt-5 mb-5">
+    <h2 class="fw-bold mb-4">Booking Requests</h2>
+
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+          <tr>
+            <th>User</th>
+
+            <th>Property</th>
+
+            <th>Phone</th>
+
+            <th>Message</th>
+
+            <th>Status</th>
+
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for booking in bookings %}
+            <tr>
+              <td>{{ booking.user.username }}</td>
+
+              <td>{{ booking.property.title }}</td>
+
+              <td>{{ booking.phone }}</td>
+
+              <td>{{ booking.message }}</td>
+
+              <td>
+                {% if booking.status == 'Pending' %}
+                  <span class="badge bg-warning">Pending</span>
+                {% elif booking.status == 'Accepted' %}
+                  <span class="badge bg-success">Accepted</span>
+                {% else %}
+                  <span class="badge bg-danger">Rejected</span>
+                {% endif %}
+              </td>
+
+              <td>
+                <a href="/properties/accept-booking/{{ booking.id }}/" class="btn btn-success btn-sm">Accept</a>
+
+                <a href="/properties/reject-booking/{{ booking.id }}/" class="btn btn-danger btn-sm">Reject</a>
+
+                {% if booking.status == 'Accepted' %}
+                  <a href="/properties/payment/{{ booking.id }}/" class="btn btn-success">Pay Now</a>
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}

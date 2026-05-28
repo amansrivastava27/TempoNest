@@ -14,38 +14,88 @@
             <div class="hero-content text-center">
 
                 <h1 class="hero-title">
-
                     Find Your Perfect Stay Anywhere
-
                 </h1>
 
                 <p class="hero-subtitle">
-
                     Affordable hostels, PGs, flats and rooms
                     for students and professionals.
-
                 </p>
 
-                <!-- SEARCH BAR -->
+                <!-- SEARCH SECTION -->
 
-                <form action="/search/"
-                      method="GET"
-                      class="hero-search">
+                <div class="search-box shadow">
 
-                    <input type="text"
-                           name="q"
-                           class="form-control search-input"
-                           placeholder="Search city, hostel, PG, flat...">
+                    <form method="GET">
 
-                    <button class="btn search-btn">
+                        <div class="row g-3 align-items-center">
 
-                        <i class="fa-solid fa-magnifying-glass"></i>
+                            <!-- SEARCH INPUT -->
 
-                        Search
+                            <div class="col-md-5">
 
-                    </button>
+                                <input type="text"
+                                       name="search"
+                                       class="form-control search-field"
+                                       placeholder="Search city or location">
 
-                </form>
+                            </div>
+
+                            <!-- CATEGORY -->
+
+                            <div class="col-md-4">
+
+                                <select name="category"
+                                        class="form-select search-field">
+
+                                    <option value="">
+                                        All Categories
+                                    </option>
+
+                                    <option value="rooms">
+                                        Rooms
+                                    </option>
+
+                                    <option value="pg">
+                                        PG
+                                    </option>
+
+                                    <option value="flats">
+                                        Flats
+                                    </option>
+
+                                    <option value="houses">
+                                        Houses
+                                    </option>
+
+                                    <option value="hostels">
+                                        Hostels
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <!-- BUTTON -->
+
+                            <div class="col-md-3">
+
+                                <button type="submit"
+                                        class="btn register-btn w-100 search-btn-main">
+
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                                    Search
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>
 
             </div>
 
@@ -65,6 +115,8 @@
 
         <div class="carousel-inner rounded-4 shadow">
 
+            <!-- SLIDE 1 -->
+
             <div class="carousel-item active">
 
                 <img src="{% static 'images/slider1.jpg' %}"
@@ -72,13 +124,19 @@
 
                 <div class="carousel-caption">
 
-                    <h2>Premium Student Hostels</h2>
+                    <h2>
+                        Premium Student Hostels
+                    </h2>
 
-                    <p>Affordable and secure stay options.</p>
+                    <p>
+                        Affordable and secure stay options.
+                    </p>
 
                 </div>
 
             </div>
+
+            <!-- SLIDE 2 -->
 
             <div class="carousel-item">
 
@@ -87,13 +145,19 @@
 
                 <div class="carousel-caption">
 
-                    <h2>Modern PG Rooms</h2>
+                    <h2>
+                        Modern PG Rooms
+                    </h2>
 
-                    <p>Comfortable living for professionals.</p>
+                    <p>
+                        Comfortable living for professionals.
+                    </p>
 
                 </div>
 
             </div>
+
+            <!-- SLIDE 3 -->
 
             <div class="carousel-item">
 
@@ -102,9 +166,13 @@
 
                 <div class="carousel-caption">
 
-                    <h2>Affordable Flats & Houses</h2>
+                    <h2>
+                        Affordable Flats & Houses
+                    </h2>
 
-                    <p>Find your perfect rental easily.</p>
+                    <p>
+                        Find your perfect rental easily.
+                    </p>
 
                 </div>
 
@@ -138,7 +206,7 @@
 
 <!-- FEATURED PROPERTIES -->
 
-<div class="container mt-5">
+<div class="container mt-5 mb-5">
 
     <h2 class="mb-4 fw-bold section-title">
 

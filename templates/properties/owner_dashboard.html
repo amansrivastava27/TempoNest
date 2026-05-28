@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mt-5 mb-5">
+    <h2 class="fw-bold mb-4">Owner Dashboard</h2>
+
+    <!-- ANALYTICS CARDS -->
+
+    <div class="row">
+      <!-- TOTAL PROPERTIES -->
+
+      <div class="col-md-4 mb-4">
+        <div class="card dashboard-card shadow border-0">
+          <div class="card-body text-center">
+            <i class="fa-solid fa-building dashboard-icon"></i>
+
+            <h3 class="mt-3">{{ total_properties }}</h3>
+
+            <p>Total Properties</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- TOTAL BOOKINGS -->
+
+      <div class="col-md-4 mb-4">
+        <div class="card dashboard-card shadow border-0">
+          <div class="card-body text-center">
+            <i class="fa-solid fa-book dashboard-icon"></i>
+
+            <h3 class="mt-3">{{ total_bookings }}</h3>
+
+            <p>Total Bookings</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- PENDING BOOKINGS -->
+
+      <div class="col-md-4 mb-4">
+        <div class="card dashboard-card shadow border-0">
+          <div class="card-body text-center">
+            <i class="fa-solid fa-clock dashboard-icon"></i>
+
+            <h3 class="mt-3">{{ pending_bookings }}</h3>
+
+            <p>Pending Requests</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROPERTY TABLE -->
+
+    <div class="card shadow border-0 mt-4">
+      <div class="card-body">
+        <h4 class="fw-bold mb-4">My Properties</h4>
+
+        <div class="table-responsive">
+          <table class="table table-hover align-middle">
+            <thead class="table-dark">
+              <tr>
+                <th>Image</th>
+
+                <th>Title</th>
+
+                <th>City</th>
+
+                <th>Price</th>
+
+                <th>Status</th>
+
+                <th>Actions</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {% for property in properties %}
+                <tr>
+                  <td>
+                    <img src="{{ property.image.url }}" width="80" class="rounded" />
+                  </td>
+
+                  <td>{{ property.title }}</td>
+
+                  <td>{{ property.city }}</td>
+
+                  <td>₹ {{ property.price }}</td>
+
+                  <td>
+                    {% if property.available %}
+                      <span class="badge bg-success">Available</span>
+                    {% else %}
+                      <span class="badge bg-danger">Booked</span>
+                    {% endif %}
+                  </td>
+
+                  <td>
+
+                    <a href="/properties/detail/{{ property.id }}/"
+                       class="btn btn-primary btn-sm">
+
+                       View
+
+                    </a>
+
+                    <a href="/properties/edit/{{ property.id }}/" class="btn btn-warning btn-sm">Edit</a>
+
+                    <a href="/properties/delete/{{ property.id }}/" class="btn btn-danger btn-sm" onclick="return confirm('Delete this property?')">Delete</a>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

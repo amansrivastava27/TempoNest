@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5 mb-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-6">
+
+            <div class="card shadow border-0 p-4">
+
+                <h2 class="fw-bold mb-4">
+
+                    Book Property
+
+                </h2>
+
+                <h4>
+
+                    {{ property.title }}
+
+                </h4>
+
+                <p class="text-muted">
+
+                    {{ property.location }}
+
+                </p>
+
+                <h5 class="text-primary mb-4">
+
+                    ₹ {{ property.price }}/month
+
+                </h5>
+
+                <form method="POST">
+
+                    {% csrf_token %}
+
+                    {{ form.as_p }}
+
+                    <button class="btn register-btn w-100">
+
+                        Confirm Booking
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
