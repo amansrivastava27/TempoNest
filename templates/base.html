@@ -150,12 +150,30 @@
                 </a>
 
                 <ul class="dropdown-menu dropdown-menu-end">
-                  <li>
-                    <a class="dropdown-item" href="/properties/my-properties/">
-                      <i class="fa-solid fa-building"></i>
+                  <!-- My Bookings -->
 
-                      My Properties
+                  <li>
+                    <a class="dropdown-item" href="{% url 'my_bookings' %}">
+                      <i class="fa-solid fa-book"></i>
+
+                      My Bookings
                     </a>
+                  </li>
+
+                  <!-- My Properties (Owners only) -->
+
+                  {% if user.is_staff %}
+                    <li>
+                      <a class="dropdown-item" href="/properties/my-properties/">
+                        <i class="fa-solid fa-building"></i>
+
+                        My Properties
+                      </a>
+                    </li>
+                  {% endif %}
+
+                  <li>
+                    <hr class="dropdown-divider" />
                   </li>
 
                   <li>
@@ -188,7 +206,7 @@
         </div>
       </div>
     </nav>
-    <!-- ================= PAGE CONTENT ================= -->
+                <!--  ================= PAGE CONTENT =================  -->
 
     {% block content %}
 

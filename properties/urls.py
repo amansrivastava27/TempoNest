@@ -60,5 +60,10 @@ urlpatterns = [
     views.payment_success,
     name='payment_success'),
 
+    path(
+    'my-bookings/',
+    views.my_bookings,
+    name='my_bookings'),
+
 
 ]

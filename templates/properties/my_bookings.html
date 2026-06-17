@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <h2>My Bookings</h2>
+
+    <table class="table">
+
+        <tr>
+            <th>Property</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+
+        {% for booking in bookings %}
+
+        <tr>
+
+            <td>{{ booking.property.title }}</td>
+
+            <td>{{ booking.status }}</td>
+
+            <td>
+
+                {% if booking.status == 'Accepted' %}
+
+                <a href="{% url 'payment_page' booking.id %}"
+                   class="btn btn-success">
+
+                    Pay Now
+
+                </a>
+
+                {% endif %}
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</div>
+
+{% endblock %}

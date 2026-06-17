@@ -403,3 +403,17 @@ def payment_success(request):
                 request,
                 'properties/payment_failed.html'
             )
+        
+
+@login_required
+def my_bookings(request):
+
+    bookings = Booking.objects.filter(
+        user=request.user
+    )
+
+    return render(
+        request,
+        'properties/my_bookings.html',
+        {'bookings': bookings}
+    )

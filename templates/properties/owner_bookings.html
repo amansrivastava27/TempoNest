@@ -48,9 +48,6 @@
 
                 <a href="/properties/reject-booking/{{ booking.id }}/" class="btn btn-danger btn-sm">Reject</a>
 
-                {% if booking.status == 'Accepted' %}
-                  <a href="/properties/payment/{{ booking.id }}/" class="btn btn-success">Pay Now</a>
-                {% endif %}
               </td>
             </tr>
           {% endfor %}
